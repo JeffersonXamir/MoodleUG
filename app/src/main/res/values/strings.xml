@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Campus Móvil UG</string>
+    <string name="header_title">Bienvenido a Moodle</string>
+    <string name="login_title">Iniciar Sesión</string>
+    <string name="correo_institucional">Correo institucional</string>
+    <string name="button_oauth">Ingresar con Google</string>
+    <string name="button_login">Validar en Moodle</string>
+    <string name="estado_espera">Esperando autenticación...</string>
+</resources>

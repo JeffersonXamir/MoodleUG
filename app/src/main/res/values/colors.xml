@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ug_blue">#00517D</color>
+    <color name="ug_blue_dark">#003E63</color>
+    <color name="ug_gold">#C87D2A</color>
+    <color name="screen_background">#EEF3F4</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="text_primary">#20303A</color>
+    <color name="text_secondary">#53636F</color>
+    <color name="danger_red">#B3261E</color>
+    <color name="success_green">#2E7D32</color>
+    <color name="input_background">#F7FAFB</color>
+</resources>
