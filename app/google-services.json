@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "955463712946",
+    "project_id": "moodleug-89626",
+    "storage_bucket": "moodleug-89626.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955463712946:android:89c9cedef48ea90fd749ab",
+        "android_client_info": {
+          "package_name": "ec.edu.ug.moodleug"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmmNf8oAhQbWDcHgH4_lw1nH8PBYKno-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
