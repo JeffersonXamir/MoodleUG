@@ -24,6 +24,7 @@ public class CoursesActivity extends AppCompatActivity {
     private RecyclerView recyclerCourses;
     private int userId;
     private String userName;
+    private String userToken;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class CoursesActivity extends AppCompatActivity {
         if (getIntent() != null) {
             userId = getIntent().getIntExtra("USER_ID", -1);
             userName = getIntent().getStringExtra("USER_NAME");
+            userToken = getIntent().getStringExtra("USER_TOKEN");
         }
 
         // 3. Validar y mostrar bienvenida
@@ -54,10 +56,11 @@ public class CoursesActivity extends AppCompatActivity {
 
     private void loadMoodleCourses(int userId) {
         MoodleApi api = ApiClient.getClient().create(MoodleApi.class);
+        String userToken = getIntent().getStringExtra("USER_TOKEN");
 
         // Llamamos a la función con el ID que recibimos del Login
         Call<List<Course>> call = api.getUserCourses(
-                Constants.MOODLE_TEST_TOKEN,
+                userToken,
                 "core_enrol_get_users_courses",
                 "json",
                 userId
@@ -69,27 +72,31 @@ public class CoursesActivity extends AppCompatActivity {
                 if (response.isSuccessful() && response.body() != null) {
                     List<Course> courses = response.body();
 
-                    // Imprimimos en consola para verificar
-                    Log.d(TAG, "Cursos encontrados: " + courses.size());
-                    for (Course course : courses) {
-                        Log.d(TAG, "Materia: " + course.getFullname());
-                    }
+                    // Asignamos los datos visuales al RecyclerView
+                    CourseAdapter adapter = new CourseAdapter(courses, new CourseAdapter.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Course course) {
+                            // Al tocar la tarjeta, preparamos el viaje a la pantalla de detalles
+                            android.content.Intent intent = new android.content.Intent(CoursesActivity.this, CourseDetailActivity.class);
 
-                    Toast.makeText(CoursesActivity.this,
-                            "Se cargaron " + courses.size() + " cursos", Toast.LENGTH_SHORT).show();
+                            // Enviamos el ID del curso, su nombre, y no olvidemos el Token del usuario
+                            intent.putExtra("COURSE_ID", course.getId());
+                            intent.putExtra("COURSE_NAME", course.getFullname());
+                            intent.putExtra("USER_TOKEN", userToken);
 
-                    // AQUÍ LUEGO CONECTAREMOS EL RECYCLERVIEW
+                            startActivity(intent);
+                        }
+                    });
+                    recyclerCourses.setAdapter(adapter);
 
                 } else {
-                    Toast.makeText(CoursesActivity.this, "Error al obtener cursos", Toast.LENGTH_SHORT).show();
-                    Log.e(TAG, "Error en la respuesta de Moodle");
+                    Toast.makeText(CoursesActivity.this, getString(R.string.error_fetch_courses), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
-                Toast.makeText(CoursesActivity.this, "Error de red", Toast.LENGTH_SHORT).show();
-                Log.e(TAG, "Retrofit Error: ", t);
+                Toast.makeText(CoursesActivity.this, getString(R.string.error_network_connection), Toast.LENGTH_SHORT).show();
             }
         });
     }

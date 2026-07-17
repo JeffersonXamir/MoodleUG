@@ -7,4 +7,13 @@
     <string name="button_oauth">Ingresar con Google</string>
     <string name="button_login">Validar en Moodle</string>
     <string name="estado_espera">Esperando autenticación...</string>
+
+    <!-- Textos de prueba para las vistas (Tools) -->
+    <string name="placeholder_shortname">SIGLAS-101</string>
+    <string name="placeholder_coursename">Nombre de la Materia</string>
+
+    <!-- Mensajes del sistema -->
+    <string name="error_fetch_courses">Error al obtener los cursos desde Moodle.</string>
+    <string name="error_network_connection">Error de conexión de red.</string>
+
 </resources>

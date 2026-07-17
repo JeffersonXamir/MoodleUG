@@ -15,6 +15,18 @@
         android:theme="@style/Theme.MoodleUG"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.courses.ForumReplyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.courses.ForumActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.courses.AssignmentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.courses.CourseDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.courses.CoursesActivity"
             android:exported="false" />
         <activity

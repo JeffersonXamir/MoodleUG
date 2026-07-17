@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_light"> <!-- Fuerza el fondo gris claro elegante -->
+    android:background="@color/background_light"
+    android:orientation="vertical">
 
-    <!-- Encabezado estilo Hero (Azul corporativo) -->
+    <!-- Encabezado Azul -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -15,26 +15,26 @@
         android:elevation="6dp">
 
         <TextView
-            android:id="@+id/textWelcome"
+            android:id="@+id/textForumName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¡Bienvenido!"
+            android:text="Nombre del Foro"
             android:textColor="@android:color/white"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Tus Cursos Inscritos"
+            android:text="Debates y discusiones"
             android:textColor="#E0E0E0"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Lista de materias -->
+    <!-- Lista de Debates -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerCourses"
+        android:id="@+id/recyclerDiscussions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
