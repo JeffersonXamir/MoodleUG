@@ -99,12 +99,15 @@ public class LoginActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         // 3. Evento del botón de Google
-        // 3. Evento del botón de Google
         buttonOAuth.setOnClickListener(v -> {
-            // FIX: Cambiamos textStatus por Toast
             Toast.makeText(this, "Abriendo cuentas de Google...", Toast.LENGTH_SHORT).show();
-            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-            googleSignInLauncher.launch(signInIntent);
+
+            // PRIMERO: Forzamos el cierre de sesión de cualquier cuenta guardada en caché
+            mGoogleSignInClient.signOut().addOnCompleteListener(this, task -> {
+                // SEGUNDO: Una vez limpio, abrimos el selector de cuentas
+                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+                googleSignInLauncher.launch(signInIntent);
+            });
         });
     }
 
@@ -173,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // IMPORTANTE: El tercer parámetro es el "Nombre corto" de tu servicio en Moodle.
         // "moodle_mobile_app" es el servicio por defecto. Si configuraste uno propio (como api_rest_app_movil), pon el "shortname" exacto aquí.
-        Call<TokenResponse> call = api.getMoodleToken(username, password, "moodle_mobile_app");
+        Call<TokenResponse> call = api.getMoodleToken(username, password, "api_app_movil");
 
         call.enqueue(new retrofit2.Callback<TokenResponse>() {
             @Override

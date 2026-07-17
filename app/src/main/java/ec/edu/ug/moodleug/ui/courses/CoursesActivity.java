@@ -7,6 +7,10 @@ import ec.edu.ug.moodleug.api.MoodleApi;
 import ec.edu.ug.moodleug.models.Course;
 import ec.edu.ug.moodleug.utils.Constants;
 import retrofit2.Call;
+
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import android.widget.Button;
 import android.content.Intent;
@@ -63,12 +67,21 @@ public class CoursesActivity extends AppCompatActivity {
             // 1. Cerramos sesión en Firebase (vital si el usuario entró con Google)
             FirebaseAuth.getInstance().signOut();
 
-            // 2. Preparamos el viaje de regreso al Login
-            Intent intent = new Intent(CoursesActivity.this, LoginActivity.class);
+            // 2. Cerrar sesión en Google
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestIdToken(Constants.GOOGLE_WEB_CLIENT_ID)
+                    .requestEmail()
+                    .build();
+            GoogleSignInClient googleClient = GoogleSignIn.getClient(this, gso);
+            googleClient.signOut();
 
-            // 3. Estas "banderas" borran el historial de pantallas.
-            // Así evitamos que al presionar "Atrás" se regrese a la lista de cursos vulnerando la seguridad.
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            // 3. (Opcional pero recomendado) Limpiar datos guardados en SharedPreferences si los tienes
+            // SharedPreferences.Editor editor = getSharedPreferences("MiAppPrefs", MODE_PRIVATE).edit();
+            // editor.clear().apply();
+
+            // 4. Volver a la pantalla de Login
+            Intent intent = new Intent(this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Limpia el historial de pantallas
             startActivity(intent);
             finish();
         });
