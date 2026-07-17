@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Moodle UG"
+        android:text="@string/moodle_ug"
         android:textColor="@color/moodle_primary"
         android:textSize="32sp"
         android:textStyle="bold" />
@@ -34,19 +34,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="Iniciar Sesión"
+                android:text="@string/iniciar_sesi_n"
                 android:textColor="@color/text_primary_dark"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/editUsername"
+            <!-- Contenedor del Usuario con botón para limpiar texto -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#00000000"
-                android:hint="Usuario de Moodle"
-                android:inputType="textNoSuggestions"
-                android:paddingHorizontal="8dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:endIconMode="clear_text"
+                app:hintTextColor="@color/moodle_primary">
+
+                <!-- Tu campo de texto para el usuario -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="@string/usuario_de_moodle"
+                    android:background="#FFFFFF"
+                    android:padding="12dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -54,14 +65,25 @@
                 android:layout_marginBottom="16dp"
                 android:background="#E0E0E0" />
 
-            <EditText
-                android:id="@+id/editPassword"
+            <!-- Contenedor del ojito -->
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#00000000"
-                android:hint="Contraseña"
-                android:inputType="textPassword"
-                android:paddingHorizontal="8dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:endIconMode="password_toggle"
+                app:hintTextColor="@color/moodle_primary">
+
+                <!-- Tu campo de texto para la contraseña -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="@string/contrase_a"
+                    android:background="#FFFFFF"
+                    android:padding="12dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="match_parent"
@@ -74,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:backgroundTint="@color/moodle_primary"
-                android:text="Ingresar"
+                android:text="@string/ingresar"
                 android:textColor="@android:color/white"
                 app:cornerRadius="8dp" />
 
@@ -82,7 +104,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="16dp"
-                android:text="— O —"
+                android:text="@string/o"
                 android:textAlignment="center"
                 android:textColor="#9E9E9E" />
 
@@ -91,7 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:backgroundTint="#FFFFFF"
-                android:text="Ingresar con Google"
+                android:text="@string/ingresar_con_google"
                 android:textColor="@color/text_primary_dark"
                 app:cornerRadius="8dp"
                 app:strokeColor="#E0E0E0"

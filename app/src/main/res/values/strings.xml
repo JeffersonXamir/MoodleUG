@@ -15,5 +15,13 @@
     <!-- Mensajes del sistema -->
     <string name="error_fetch_courses">Error al obtener los cursos desde Moodle.</string>
     <string name="error_network_connection">Error de conexión de red.</string>
+    <string name="cargando">Cargando...</string>
+    <string name="moodle_ug">Moodle UG</string>
+    <string name="iniciar_sesi_n">Iniciar Sesión</string>
+    <string name="usuario_de_moodle">Usuario de Moodle</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="o">— O —</string>
+    <string name="ingresar_con_google">Ingresar con Google</string>
 
 </resources>

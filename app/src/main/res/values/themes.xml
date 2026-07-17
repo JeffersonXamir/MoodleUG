@@ -7,6 +7,9 @@
         <item name="android:statusBarColor">@color/ug_blue_dark</item>
         <item name="android:navigationBarColor">@color/ug_blue_dark</item>
         <item name="android:windowActionModeOverlay">true</item>
+        <item name="android:editTextColor">#000000</item>
+        <item name="android:textColorHint">#7E7A7A</item>
+        <item name="colorControlActivated">@color/moodle_primary</item>
     </style>
 
     <style name="Theme.MoodleUG" parent="Base.Theme.MoodleUG" />
