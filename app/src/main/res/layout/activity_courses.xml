@@ -1,38 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/background_light"> <!-- Fuerza el fondo gris claro elegante -->
+    android:background="@color/background_light"
+    android:orientation="vertical">
 
-    <!-- Encabezado estilo Hero (Azul corporativo) -->
+    <!-- Encabezado Azul Modificado -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/moodle_primary"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:padding="24dp"
-        android:elevation="6dp">
+        android:elevation="6dp"
+        android:gravity="center_vertical">
 
-        <TextView
-            android:id="@+id/textWelcome"
-            android:layout_width="match_parent"
+        <!-- Textos a la izquierda -->
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="¡Bienvenido!"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Cargando..." />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Mis Cursos"
+                android:textColor="#E0E0E0"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Botón de Cerrar Sesión a la derecha -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#D32F2F"
             android:textColor="@android:color/white"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="Tus Cursos Inscritos"
-            android:textColor="#E0E0E0"
-            android:textSize="14sp" />
+            android:text="Salir"
+            app:cornerRadius="8dp" />
     </LinearLayout>
 
-    <!-- Lista de materias -->
+    <!-- Lista de cursos -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerCourses"
         android:layout_width="match_parent"

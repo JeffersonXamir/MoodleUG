@@ -7,6 +7,10 @@ import ec.edu.ug.moodleug.api.MoodleApi;
 import ec.edu.ug.moodleug.models.Course;
 import ec.edu.ug.moodleug.utils.Constants;
 import retrofit2.Call;
+import com.google.firebase.auth.FirebaseAuth;
+import android.widget.Button;
+import android.content.Intent;
+import ec.edu.ug.moodleug.ui.login.LoginActivity;
 
 import android.util.Log;
 import android.widget.TextView;
@@ -52,6 +56,22 @@ public class CoursesActivity extends AppCompatActivity {
             Toast.makeText(this, "Error al recuperar datos del usuario", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        Button btnLogout = findViewById(R.id.btnLogout);
+
+        btnLogout.setOnClickListener(v -> {
+            // 1. Cerramos sesión en Firebase (vital si el usuario entró con Google)
+            FirebaseAuth.getInstance().signOut();
+
+            // 2. Preparamos el viaje de regreso al Login
+            Intent intent = new Intent(CoursesActivity.this, LoginActivity.class);
+
+            // 3. Estas "banderas" borran el historial de pantallas.
+            // Así evitamos que al presionar "Atrás" se regrese a la lista de cursos vulnerando la seguridad.
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
+        });
     }
 
     private void loadMoodleCourses(int userId) {
