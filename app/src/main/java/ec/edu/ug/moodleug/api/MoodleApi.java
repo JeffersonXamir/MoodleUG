@@ -10,9 +10,9 @@ import retrofit2.http.Query;
 
 public interface MoodleApi {
 
-    // Obtener cursos
+    // Endpoint para obtener los cursos de un estudiante
     @GET("webservice/rest/server.php")
-    Call<List<Course>> getCourses(
+    Call<List<Course>> getUserCourses(
             @Query("wstoken") String token,
             @Query("wsfunction") String function,
             @Query("moodlewsrestformat") String format,

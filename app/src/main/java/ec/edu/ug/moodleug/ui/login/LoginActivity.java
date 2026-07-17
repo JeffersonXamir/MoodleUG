@@ -25,6 +25,7 @@ import ec.edu.ug.moodleug.R;
 import ec.edu.ug.moodleug.api.ApiClient;
 import ec.edu.ug.moodleug.api.MoodleApi;
 import ec.edu.ug.moodleug.models.UserProfile;
+import ec.edu.ug.moodleug.ui.courses.CoursesActivity;
 import ec.edu.ug.moodleug.utils.Constants;
 
 import androidx.activity.EdgeToEdge;
@@ -124,6 +125,15 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "¡Acceso concedido!", Toast.LENGTH_SHORT).show();
 
                     // Siguiente paso: Navegar a la pantalla de lista de cursos pasando el user.getId()
+                    // Siguiente paso: Navegar a la pantalla de lista de cursos pasando el user.getId()
+                    Intent intent = new Intent(LoginActivity.this, CoursesActivity.class);
+                    intent.putExtra("USER_ID", user.getId()); // Generalmente es un int o long
+                    intent.putExtra("USER_NAME", user.getFullname());
+                    startActivity(intent);
+
+                    // Finalizamos LoginActivity para que el usuario no pueda regresar con el botón "Atrás"
+                    finish();
+
                 } else {
                     textStatus.setText("Error: El correo no pertenece a Moodle.");
                     // Opcional: Cerrar sesión en Firebase si no existe en Moodle
