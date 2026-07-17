@@ -103,6 +103,7 @@ public class CoursesActivity extends AppCompatActivity {
                             intent.putExtra("COURSE_ID", course.getId());
                             intent.putExtra("COURSE_NAME", course.getFullname());
                             intent.putExtra("USER_TOKEN", userToken);
+                            intent.putExtra("USER_ID", userId);
 
                             startActivity(intent);
                         }

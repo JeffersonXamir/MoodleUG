@@ -2,11 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background_light"
     android:orientation="vertical">
 
-    <!-- Encabezado dinámico con el nombre del curso -->
+    <!-- Encabezado Azul -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,37 +15,25 @@
         android:elevation="6dp">
 
         <TextView
-            android:id="@+id/textCourseName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Libreta de Calificaciones"
             android:textColor="@android:color/white"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:text="Cargando curso..." />
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Actividades y Recursos"
+            android:text="Tus notas en este curso"
             android:textColor="#E0E0E0"
             android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/btnViewGrades"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#FFFFFF"
-            android:textColor="@color/moodle_primary"
-            android:text="Ver mis calificaciones"
-            android:textSize="12sp"
-            app:cornerRadius="18dp" />
     </LinearLayout>
 
-    <!-- Lista de actividades -->
+    <!-- Lista de Notas -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerModules"
+        android:id="@+id/recyclerGrades"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"

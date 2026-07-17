@@ -5,6 +5,7 @@ import java.util.List;
 import ec.edu.ug.moodleug.models.Course;
 import ec.edu.ug.moodleug.models.CourseSection;
 import ec.edu.ug.moodleug.models.ForumDiscussionsResponse;
+import ec.edu.ug.moodleug.models.GradeReportResponse;
 import ec.edu.ug.moodleug.models.SiteInfoResponse;
 import ec.edu.ug.moodleug.models.TokenResponse;
 import ec.edu.ug.moodleug.models.UserProfile;
@@ -92,5 +93,15 @@ public interface MoodleApi {
             @Field("postid") int postId, // El ID del mensaje al que respondemos
             @Field("subject") String subject,
             @Field("message") String message
+    );
+
+    // Endpoint para obtener las calificaciones de un curso
+    @GET("webservice/rest/server.php")
+    Call<GradeReportResponse> getCourseGrades(
+            @Query("wstoken") String token,
+            @Query("wsfunction") String function,
+            @Query("moodlewsrestformat") String format,
+            @Query("courseid") int courseId,
+            @Query("userid") int userId
     );
 }

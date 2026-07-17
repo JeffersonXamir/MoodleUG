@@ -8,12 +8,15 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_ug"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_ug_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MoodleUG"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.grades.GradesActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.courses.ForumReplyActivity"
             android:exported="false" />

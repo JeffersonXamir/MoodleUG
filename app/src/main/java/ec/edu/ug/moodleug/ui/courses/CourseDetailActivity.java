@@ -14,6 +14,7 @@ import ec.edu.ug.moodleug.api.ApiClient;
 import ec.edu.ug.moodleug.api.MoodleApi;
 import ec.edu.ug.moodleug.models.CourseModule;
 import ec.edu.ug.moodleug.models.CourseSection;
+import ec.edu.ug.moodleug.ui.grades.GradesActivity;
 import retrofit2.Call;
 
 public class CourseDetailActivity extends AppCompatActivity {
@@ -24,6 +25,7 @@ public class CourseDetailActivity extends AppCompatActivity {
     private String courseName;
     private RecyclerView recyclerModules;
     private TextView textCourseName;
+    private int userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,7 @@ public class CourseDetailActivity extends AppCompatActivity {
             courseId = getIntent().getIntExtra("COURSE_ID", -1);
             courseName = getIntent().getStringExtra("COURSE_NAME");
             userToken = getIntent().getStringExtra("USER_TOKEN");
+            userId = getIntent().getIntExtra("USER_ID", -1);
         }
 
         if (courseId != -1 && userToken != null) {
@@ -48,6 +51,15 @@ public class CourseDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "Error al cargar el curso", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        android.widget.Button btnViewGrades = findViewById(R.id.btnViewGrades);
+        btnViewGrades.setOnClickListener(v -> {
+            android.content.Intent intent = new android.content.Intent(CourseDetailActivity.this, GradesActivity.class);
+            intent.putExtra("COURSE_ID", courseId);
+            intent.putExtra("USER_TOKEN", userToken);
+            intent.putExtra("USER_ID", userId);
+            startActivity(intent);
+        });
     }
 
     private void loadCourseContents(int courseId, String token) {
@@ -101,9 +113,28 @@ public class CourseDetailActivity extends AppCompatActivity {
                                     intent.putExtra("USER_TOKEN", userToken);
                                     startActivity(intent);
 
+                                } else if ("resource".equals(module.getModname()) || "folder".equals(module.getModname())) {
+                                    if (module.getContents() != null && !module.getContents().isEmpty()) {
+
+                                        String fileUrl = module.getContents().get(0).getFileurl();
+
+                                        // FIX: Validamos si la URL ya tiene el símbolo '?' para saber cómo pegar el token
+                                        String urlConPermiso = fileUrl;
+                                        if (fileUrl.contains("?")) {
+                                            urlConPermiso += "&token=" + userToken;
+                                        } else {
+                                            urlConPermiso += "?token=" + userToken;
+                                        }
+
+                                        android.content.Intent browserIntent = new android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(urlConPermiso));
+                                        startActivity(browserIntent);
+
+                                        Toast.makeText(CourseDetailActivity.this, "Descargando recurso...", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(CourseDetailActivity.this, "Este recurso está vacío", Toast.LENGTH_SHORT).show();
+                                    }
                                 } else {
-                                    // Para archivos u otros recursos
-                                    Toast.makeText(CourseDetailActivity.this, "Recurso no interactivo", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CourseDetailActivity.this, "Actividad no interactiva", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
